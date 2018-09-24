@@ -1,2 +1,20 @@
+.idea/*
+.DS_Store
+
+# CMake
+cmake-build-debug/
+
+## File-based project format:
+*.iws
+
+# IntelliJ
+/out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
 # Node modules
 node_modules/
