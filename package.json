@@ -1,0 +1,19 @@
+{
+  "name": "prerender_server",
+  "version": "1.0.0",
+  "description": "Prerender server for SPA",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "spa",
+    "prerender",
+    "angular"
+  ],
+  "author": "AnhLD",
+  "license": "ISC",
+  "dependencies": {
+    "prerender": "^5.4.4"
+  }
+}
