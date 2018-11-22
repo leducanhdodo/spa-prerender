@@ -1,20 +1,25 @@
-FROM node:latest
+FROM node:9.8.0-stretch
 
 MAINTAINER Duc Anh Le <leducanhdodo@gmail.com>
+RUN apt-get update -y && apt-get install -y curl wget
 
-RUN apt-get update -y && sudo apt-get install -y curl wget
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+  && sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
+  && apt-get update -y \
+  && apt-get install google-chrome-stable -y \
+  && apt-get clean \
+  && rm -rf /tmp/* /var/lib/apt/lists/*
 
-RUN mkdir /data
+# Add Chrome as a user
+RUN groupadd -r chrome && useradd -r -g chrome -G audio,video chrome \
+    && mkdir -p /home/chrome && chown -R chrome:chrome /home/chrome
 
-ADD ./package.json /data/package.json
-RUN cd /data && npm install
+WORKDIR /home/chrome
+COPY . /home/chrome
+RUN  npm install && chown -R chrome:chrome /home/chrome/
 
-ADD . /data/
+USER chrome
 
-RUN chmod a+x /data/deployment/install.sh && /data/deployment/install.sh
-
-RUN chmod a+x /data/deployment/start-chrome.sh && chmod a+x /data/startup_script.sh
-
-CMD ["data/startup_script.sh"]
+CMD ["node", "server.js"]
 
 EXPOSE 3000
