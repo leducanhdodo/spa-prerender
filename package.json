@@ -1,6 +1,6 @@
 {
   "name": "prerender_server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Prerender server for SPA",
   "main": "index.js",
   "scripts": {

@@ -1,4 +1,4 @@
-FROM node:9.8.0-stretch
+FROM node:latest
 
 MAINTAINER Duc Anh Le <leducanhdodo@gmail.com>
 RUN apt-get update -y && apt-get install -y curl wget
