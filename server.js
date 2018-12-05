@@ -4,4 +4,7 @@ const server = prerender({
     chromeFlags: [ '--no-sandbox', '--headless', '--disable-gpu', '--remote-debugging-port=9222', '--hide-scrollbars' ],
     // chromeLocation: '/usr/bin/google-chrome-stable'
 });
+
+server.use(require('prerender-memory-cache'))
+
 server.start();
